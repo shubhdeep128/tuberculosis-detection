@@ -1,0 +1,23 @@
+{
+  "name": "project-backend",
+  "version": "1.0.0",
+  "description": "Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+  },
+  "author": "Shubh Deep",
+  "license": "ISC",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.9",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "path": "^0.12.7"
+  }
+}
