@@ -13,7 +13,7 @@ var UserSchema = new Schema({
   	},
   	photo: {
 	    type: String
-    },
+	}	
 
 });
 

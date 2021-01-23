@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const cors = require('cors');
 const cookieSession = require("cookie-session");
+const errorHandler = require("./utils/error");
 require('dotenv/config');
 
 //MIDDLEWARES
@@ -43,6 +44,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./utils/passport.js");
 require("./routes/api/auth.js")(app);
+const uploadRoute = require("./routes/api/upload.js");
+app.use("/api", uploadRoute);
 
 // ROUTES
 app.get('/api', (req, res) => {
@@ -56,6 +59,8 @@ app.get("*", (req, res) => {
     "message": "Path not found"
   });
 });
+
+app.use(errorHandler);
 
 
 
