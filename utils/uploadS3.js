@@ -2,6 +2,7 @@ const awsSDK = require("aws-sdk");
 const fs = require("fs");
 const mime = require("mime-types");
 const { isImage } = require("./fileExtension");
+const axios = require("axios");
 
 exports.uploadS3 = async function (req, res, next) {
     if (req.files) {
@@ -24,13 +25,23 @@ exports.uploadS3 = async function (req, res, next) {
             }
 
             let URLs = [];
+            let cannyURLs = [];
 
             req.files.forEach(async (file) => {
                 await uploadFile(file.filename, file.path);
                 URLs.push(process.env.CLOUDFRONT_URL + file.filename);
+                let canny = await axios({
+                    method: "post",
+                    url: "http://127.0.0.1:5000/canny",
+                    data: {
+                        url: process.env.CLOUDFRONT_URL + file.filename, // This is the body part
+                        filename: file.filename
+                    },
+                });
+                cannyURLs.push(canny.data.url);
                 fs.unlinkSync(file.path);
-                if (URLs.length === req.files.length) {
-                    return res.status(200).json(URLs);
+                if (cannyURLs.length === req.files.length) {
+                    return res.status(200).json({ URLs, cannyURLs });
                 }
             });
         } catch (e) {
