@@ -25,9 +25,9 @@ exports.uploadS3 = async function (req, res, next) {
 
             let URLs = [];
 
-            req.files.forEach(async(file) => {
+            req.files.forEach(async (file) => {
                 await uploadFile(file.filename, file.path);
-                await URLs.push(process.env.CLOUDFRONT_URL + file.filename);
+                URLs.push(process.env.CLOUDFRONT_URL + file.filename);
                 fs.unlinkSync(file.path);
                 if (URLs.length === req.files.length) {
                     return res.status(200).json(URLs);

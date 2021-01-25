@@ -5,12 +5,12 @@ const { uploadS3 } = require("../../utils/uploadS3");
 const router = express.Router();
 
 const storage = multer.diskStorage({
-    destination: "./files",
-    filename(req, file, cb) {
-        let newName = Date.now() + "-" + file.originalname;
-        newName = newName.split(" ").join("_");
-        cb(null, newName);
-    },
+  destination: "./files",
+  filename(req, file, cb) {
+    let newName = Date.now() + "-" + file.originalname;
+    newName = newName.split(" ").join("_");
+    cb(null, newName);
+  },
 });
 
 const upload = multer({ storage });
