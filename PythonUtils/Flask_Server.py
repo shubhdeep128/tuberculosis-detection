@@ -91,7 +91,7 @@ def Sobel():
 @app.route('/Canny', methods=['GET', 'POST'])
 def Canny():
     print("Its working canny")
-    image = cv2.imread('./test')
+    image = cv2.imread('./preProcessImages/test.png')
     scale_percent = 20 # percent of original size
     width = int(image.shape[1] * scale_percent / 100)
     height = int(image.shape[0] * scale_percent / 100)
@@ -101,7 +101,7 @@ def Canny():
     edges = cv2.Canny(img,100,200)
     # cv2.imshow('Original image',img)
     # cv2.imshow('Canny image', edges)
-    cv2.imwrite( "./Final/Canny.jpg", edges)
+    cv2.imwrite( "./postProcessImages/Canny.jpg", edges)
     # cv2.imshow('Gray image', gray)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
@@ -110,4 +110,4 @@ def Canny():
 
 
 
-app.run(host="0.0.0.0", port=5000, debug=True)
+app.run(port=5000, debug=True)
