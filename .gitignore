@@ -1,3 +1,6 @@
+# python envs
+envs
+
 # Logs
 logs
 *.log
@@ -102,3 +105,8 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Python
+PythonUtils/Final
+PythonUtils/Input
+PythonUtils/test
