@@ -26,6 +26,9 @@ exports.uploadS3 = async function (req, res, next) {
 
             let URLs = [];
             let cannyURLs = [];
+            let laplacianURLs = [];
+            let sobelXURLs = [];
+            let sobelYURLs = [];
 
             req.files.forEach(async (file) => {
                 await uploadFile(file.filename, file.path);
@@ -39,9 +42,44 @@ exports.uploadS3 = async function (req, res, next) {
                     },
                 });
                 cannyURLs.push(canny.data.url);
+                let laplacian = await axios({
+                    method: "post",
+                    url: "http://127.0.0.1:5000/laplacian",
+                    data: {
+                        url: process.env.CLOUDFRONT_URL + file.filename, // This is the body part
+                        filename: file.filename,
+                    },
+                });
+                laplacianURLs.push(laplacian.data.url);
+                let sobelX = await axios({
+                    method: "post",
+                    url: "http://127.0.0.1:5000/sobelx",
+                    data: {
+                        url: process.env.CLOUDFRONT_URL + file.filename, // This is the body part
+                        filename: file.filename,
+                    },
+                });
+                sobelXURLs.push(sobelX.data.url);
+                let sobelY = await axios({
+                    method: "post",
+                    url: "http://127.0.0.1:5000/sobely",
+                    data: {
+                        url: process.env.CLOUDFRONT_URL + file.filename, // This is the body part
+                        filename: file.filename,
+                    },
+                });
+                sobelYURLs.push(sobelY.data.url);
+                
                 fs.unlinkSync(file.path);
-                if (cannyURLs.length === req.files.length) {
-                    return res.status(200).json({ URLs, cannyURLs });
+                if (
+                    cannyURLs.length === req.files.length &&
+                    laplacianURLs.length === req.files.length &&
+                    sobelXURLs.length === req.files.length &&
+                    sobelYURLs.length === req.files.length
+                ) {
+                    return res
+                        .status(200)
+                        .json({ URLs, cannyURLs, laplacianURLs, sobelXURLs, sobelYURLs });
                 }
             });
         } catch (e) {
