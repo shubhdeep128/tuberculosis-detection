@@ -6,21 +6,18 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const cookieSession = require("cookie-session");
 const errorHandler = require("./utils/error");
+const path = require("path");
 require("dotenv/config");
 
 //MIDDLEWARES
-app.use(
-  cors({
-    origin: true,
-    credentials: true,
-  })
-);
+app.use(cors());
 app.use(
   bodyParser.urlencoded({
     extended: true,
   })
 );
 app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "client", "build")));
 
 //IMPORT SCHEMAS AND CONNECT TO DB
 require("./models/User.js");
@@ -59,9 +56,7 @@ app.get("/api", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.status(400).send({
-    message: "Path not found",
-  });
+  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
 });
 
 app.use(errorHandler);
