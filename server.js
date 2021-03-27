@@ -47,6 +47,8 @@ require("./utils/passport.js");
 require("./routes/api/auth.js")(app);
 const uploadRoute = require("./routes/api/upload.js");
 app.use("/api", uploadRoute);
+const userRoute = require("./routes/api/user.js");
+app.use("/user", userRoute);
 
 // ROUTES
 app.get("/api", (req, res) => {
