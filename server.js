@@ -49,6 +49,8 @@ const uploadRoute = require("./routes/api/upload.js");
 app.use("/api", uploadRoute);
 const userRoute = require("./routes/api/user.js");
 app.use("/user", userRoute);
+const recordRoute = require("./routes/api/record.js");
+app.use("/record", recordRoute);
 
 // ROUTES
 app.get("/api", (req, res) => {
