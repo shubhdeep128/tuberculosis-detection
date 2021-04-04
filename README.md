@@ -6,7 +6,7 @@ Developing a Application to help patients take/upload pictures of boils/scars ri
 
 ## :triangular_ruler: Architecture
 
-- Backendend : NodeJS for main functions and Flask as a microservice for doing image processing
+- Backendend : NodeJS for main API functions and Flask as a microservice for doing image processing
 
 - Frontend : React Native ([_Click to view the Repo_](https://github.com/shubh128/ProjectFrontEnd))
 
