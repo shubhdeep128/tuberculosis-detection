@@ -32,7 +32,7 @@ Developing a Application to help patients take/upload pictures of boils/scars ri
 
 ![Result Page](./resources/result_new.jpg)
 
-## :fist_right: :fist_left: Team Members
+## :fist_right::fist_left: Team Members
 
 - [Shubh Deep](https://github.com/shubh128)
 - [Jonathan Samuel](https://github.com/Joe2k)
