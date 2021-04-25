@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ImageCanvas from "./imageCanvas";
 import ImageCanvasView from "./imageCanvasView";
+import TestImageCanvas from './TestImageCanvas'
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
           <Route
             path={`/imageView/:url/:id`}
             render={(props) => <ImageCanvasView {...props} />}
+          ></Route>
+          <Route
+            path={`/test/imageView`}
+            render={(props) => <TestImageCanvas {...props} />}
           ></Route>
         </Switch>
       </Router>
