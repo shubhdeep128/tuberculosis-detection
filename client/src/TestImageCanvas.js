@@ -85,8 +85,6 @@ function App(props) {
                 hideGrid={true}
                 brushColor="#fff"
                 style={{ margin: "20px" }}
-                canvasHeight={400}
-                canvasWidth={300}
                 lazyRadius={0}
               ></CanvasDraw>
             </Col>
