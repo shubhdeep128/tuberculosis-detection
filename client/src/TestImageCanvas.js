@@ -83,6 +83,8 @@ function App(props) {
                 imgSrc={url}
                 brushRadius={2}
                 hideGrid={true}
+                canvasHeight={200}
+                canvasWidth={200}
                 brushColor="#fff"
                 style={{ margin: "20px" }}
                 lazyRadius={0}
